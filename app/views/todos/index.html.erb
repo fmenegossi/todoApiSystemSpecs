@@ -1,19 +1,26 @@
-<h1>TodoList</h1>
-<center id="notice"><%= notice %></center>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1 class="page-header">TodoList</h1>
+    
+    <% if notice.present? %>
+      <div class="alert alert-info" role="alert">
+        <%= notice %>
+      </div>
+    <% end %>
 
-<%= render "form" %>
+    <%= render "form", todo: @todo %>
 
-<ul id="todolist">
-  <%= render @todos %>
-</ul>
+    <hr />
 
-<div class="footer">
-  <form>
-    <%= search_field_tag "q", params[:q], placeholder: "Search..." %>
-  </form>
+    <table class="table table-striped" id="todoList">
+      <%= render @todos %>
+    </table>
 
-  Todo: <span id="todo-count">1</span> •
-  Done: <span id="completed-count">0</span> •
-  Total: <span id="total-count">1</span> •
-  <a href="#" id="clean-up">Clean up</a>
+    <div class="footer">
+      Todo: <span id="todo-count">1</span> •
+      Done: <span id="completed-count">0</span> •
+      Total: <span id="total-count">1</span> •
+      <a href="#" id="clean-up">Clean up</a>
+    </div>
+  </div>
 </div>

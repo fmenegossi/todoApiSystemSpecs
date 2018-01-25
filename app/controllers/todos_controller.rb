@@ -1,4 +1,5 @@
 class TodosController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_todo, only: [:show, :update, :destroy]
 
   # GET /todos
@@ -6,12 +7,6 @@ class TodosController < ApplicationController
   def index
     @todo = Todo.new
     @todos = Todo.all
-
-    if params[:q].present?
-      @todos = @todos.where('title ILIKE ?', "%#{params[:q]}%")
-    end
-
-    @todos = @todos.order(:id)
   end
 
   def show
